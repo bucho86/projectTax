@@ -1,81 +1,64 @@
-// You're a JS developer, and you've been asked to build a a tax calculation engine
-// v4 features:
-// - if income greater than 200$, ask them to show proof (ask more questions )
-// and show the proof in addition to their net income display
-// - for everybody else, show just the net income
+// script.js
 
-// v5: @todo
-// - when the income is greater than $200, do the tax calculation but add a $20 deduction from the gross.
-
-// v6: dele
-// - if the state is ME or NH make the taxRate 0.05
-
-// const grossIncome = 50000;
-// const maTaxRate = 0.0423;
-// const nhTaxRate = 0.05;
-// const meTaxRate = 0.05;
-// const state = "MA";
-
-// if (state === "MA") {
-//     const taxRate = maTaxRate;
-//     if (grossIncome >= 50000) {
-//         console.log(`Your gross income is ${grossIncome}`);
-//     } else {
-//         const taxDue = grossIncome * taxRate;
-//         const netIncome = grossIncome - taxDue;
-//         console.log(`Your net income is ${netIncome.toFixed(2)}`);
-//     }
-// } else if (state === "NH") {
-//     const taxRate = nhTaxRate;
-//     console.log(`Your gross income is ${grossIncome}`);
-//     const taxDue = grossIncome * taxRate;
-//     const netIncome = grossIncome - taxDue;
-//     console.log(`Your net income is ${netIncome.toFixed(2)}`);
-// } else if (state === "ME") {
-//     const taxRate = meTaxRate;
-//     console.log(`Your gross income is ${grossIncome}`);
-//     const taxDue = grossIncome * taxRate;
-//     const netIncome = grossIncome - taxDue;
-//     console.log(`Your net income is ${netIncome.toFixed(2)}`);
-// } else {
-//     console.log("Invalid state");
-// }
-
-// }
-// if( grossIncome >= 200 ){
-
-//     console.log(`Your gross income is ${grossIncome}`)
-
-// } else {
-//     // do some stuff
-//     const taxDue = grossIncome * taxRate;
-//     const netIncome =  grossIncome - taxDue;
-
-//     console.log(netIncome);
-// need a place to display the results
-//v3 write the funtion of the v3
-// Todo: write the v3 the function and make it work for all states
-const grossIncome = 50000;
+// Example: Initial hardcoded values for testing
+const grossIncome = 50000; // This would be the user's income input
 const maTaxRate = 0.0423;
 const nhTaxRate = 0.05;
 const meTaxRate = 0.05;
-const state = "MA";
+const vtTaxRate = 0.068; // Vermont's sample tax rate
+const riTaxRate = 0.0475; // Rhode Island's sample tax rate
+const ctTaxRate = 0.055; // Connecticut's sample tax rate
+let calculatedTax = 0;
 
-function calculateTaxV2(grossIncome, stateTaxRate) {
-    if (grossIncome >= 100) {
-      console.log(`Your gross income is ${grossIncome}`);
-    } else {
-      // do some stuff
-      const taxDue = grossIncome * stateTaxRate; 
-      const netIncome = grossIncome - taxDue;
-  
-      console.log(netIncome);
-    }
-  }
-  calculateTaxV2(10_000, 0.05);
-  calculateTaxV2(100, 0.05);
-  calculateTaxV2(5, 0.05); 
-  // Todo: write the v3 the function and make it work for all states
+// This would come from the form input in the real application
+// const grossIncomeFromHtmlForm = parseFloat(document.getElementById('income').value);
+// const stateFromHtmlForm = document.getElementById('state').value;
 
+const grossIncomeFromHtmlForm = grossIncome; // Placeholder for example
+const stateFromHtmlForm = "ma"; // Placeholder for example
 
- 
+// Function to calculate tax based on rate and income
+function calculateTax(taxRate, income) {
+    return income * taxRate;
+}
+
+// Simulate getting state input and calculating tax based on that state
+if (stateFromHtmlForm === "ma") {
+    calculatedTax = calculateTax(maTaxRate, grossIncomeFromHtmlForm);
+} else if (stateFromHtmlForm === "nh") {
+    calculatedTax = calculateTax(nhTaxRate, grossIncomeFromHtmlForm);
+} else if (stateFromHtmlForm === "me") {
+    calculatedTax = calculateTax(meTaxRate, grossIncomeFromHtmlForm);
+} else if (stateFromHtmlForm === "vt") {
+    calculatedTax = calculateTax(vtTaxRate, grossIncomeFromHtmlForm);
+} else if (stateFromHtmlForm === "ri") {
+    calculatedTax = calculateTax(riTaxRate, grossIncomeFromHtmlForm);
+} else if (stateFromHtmlForm === "ct") {
+    calculatedTax = calculateTax(ctTaxRate, grossIncomeFromHtmlForm);
+} else {
+    console.error("Invalid state selected.");
+}
+
+console.log(`State selected: ${stateFromHtmlForm}`);
+console.log(`Gross income: $${grossIncomeFromHtmlForm}`);
+console.log(`Calculated tax: $${calculatedTax.toFixed(2)}`);
+
+// Additional operations can be done here
+// For Massachusetts, deduct local taxes, or perform other state-specific operations
+if (stateFromHtmlForm === "ma") {
+    console.log("Performing additional operations for Massachusetts...");
+
+    // Example of a non-existent function call, just as a placeholder
+    // calculateLocalTaxes(); 
+    // showTaxes();
+}
+
+// Displaying the result on the page (for the real application)
+document.getElementById('result').textContent = `The calculated tax for ${stateFromHtmlForm.toUpperCase()} is $${calculatedTax.toFixed(2)}.`;
+
+// Placeholder for other state-specific operations
+// if(stateFromHtmlForm === "ma");{
+// calculateTax(maTax, grossIncomeFromHtmlForm);
+// calculateLocalTaxes9(); // this function doesn't exist
+// showTaxes(); //
+// }

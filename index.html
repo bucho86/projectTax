@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tax Calculator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tax Calculator</title>
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<script defer src="script.js"></script>
 </head>
-<body>
-    
-    <h1> Welcome, Tax Payer</h1>
 
-    <form>
-        <select name="states" id="states">
-            <option value="MA" selected>ma</option>
-            <option value="NH">nh</option>
-            <option value="ME">me</option>
-        </select>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
 
-        <input type="number"><input type="button" value="Calculate Tax">
-
-        
-
-    </form>
-    
-
-    <script src="app.js"></script>
+	<div class="bg-white p-8 rounded-lg shadow-lg w-96">
+		<h1 class="text-2xl font-bold mb-6 text-center">New England Tax Calculator</h1>
+		<form id="taxForm" class="space-y-4">
+			<div>
+				<label for="name" class="block text-gray-700">Your Name:</label>
+				<input type="text" id="name" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+            </div>
+				<div>
+					<label for="state" class="block text-gray-700">Select Your State:</label>
+					<select id="state" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+                    <option value="" disabled selected>Select your state</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="ME">Maine</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="VT">Vermont</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="CT">Connecticut</option>
+                </select>
+				</div>
+				<div>
+					<label for="income" class="block text-gray-700">Your Income:</label>
+					<input type="number" id="income" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
+            </div>
+					<button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full">Calculate Tax</button>
+		</form>
+		<div id="result" class="mt-6 text-lg text-gray-700"></div>
+		<div id="error" class="mt-6 text-lg text-red-500"></div>
+	</div>
 
 </body>
-</html> 
+
+</html>
