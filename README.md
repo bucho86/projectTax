@@ -1,3 +1,4 @@
+all my old code with notes 
 
 <!-- // You're a JS developer, and you've been asked to build a a tax calculation engine
 // - if income greater than 200$, ask them to show proof (ask more questions )
